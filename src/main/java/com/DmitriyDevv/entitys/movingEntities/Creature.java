@@ -40,6 +40,10 @@ public abstract class Creature extends Entity {
         }
     }
 
+    public Class<?> getGoal() {
+        return goal;
+    }
+
     private void attackGoal(int xToGoal, int yToGoal) {
         Entity entity = worldMap.getEntity(xToGoal, yToGoal);
 
@@ -82,9 +86,5 @@ public abstract class Creature extends Entity {
 
     private int getATTACK() {
         return this.creatureParameters.getATTACK();
-    }
-
-    public Class<?> getGoal() {
-        return goal;
     }
 }

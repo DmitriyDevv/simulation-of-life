@@ -70,7 +70,7 @@ public class Astar {
         return path;
     }
 
-    public Coords getGoalCoords() {
+    private Coords getGoalCoords() {
         int rows = worldMap.getHEIGHT() + 1;
         int cols = worldMap.getWIDTH() + 1;
         boolean[][] visited = new boolean[rows][cols];
@@ -101,7 +101,7 @@ public class Astar {
         return null;
     }
 
-    public double calculateHCost(Node current, Node goal) {
+    private double calculateHCost(Node current, Node goal) {
         int cost = 2;
         if (current.getX() == goal.getX() || current.getY() == goal.getY()) {
             cost = 1;

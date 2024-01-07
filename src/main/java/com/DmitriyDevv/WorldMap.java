@@ -52,14 +52,6 @@ public class WorldMap {
         return null;
     }
 
-    public int getHEIGHT() {
-        return HEIGHT;
-    }
-
-    public int getWIDTH() {
-        return WIDTH;
-    }
-
     public void putEntity(int x, int y, Entity entity) {
         worldMap.put(new Coords(x, y), entity);
     }
@@ -79,6 +71,21 @@ public class WorldMap {
         }
     }
 
+    public int getHEIGHT() {
+        return HEIGHT;
+    }
+
+    public int getWIDTH() {
+        return WIDTH;
+    }
+
+    public void removeEntity(int x, int y, boolean isDead) {
+        if (isDead) {
+            updateNumbersEntity(worldMap.get(new Coords(x, y)).getClass(), CreatureState.REMOVE);
+        }
+        worldMap.remove(new Coords(x, y));
+    }
+
     private <T extends Entity> void initEntities(Class<T> entityClass) {
         while (entityCounts.get(entityClass) < thresholdsEntities.get(entityClass)) {
             putEntityAtRandomCoords(createEntity(entityClass));
@@ -95,26 +102,6 @@ public class WorldMap {
         }
     }
 
-    private <T extends Entity> Entity createEntity(Class<T> entityClass) {
-        String className = entityClass.getSimpleName();
-        Coords initCoords = new Coords(0, 0);
-        return switch (className) {
-            case "Herbivore" -> new Herbivore(this, initCoords);
-            case "Predator" -> new Predator(this, initCoords);
-            case "Grass" -> new Grass(initCoords);
-            case "Tree" -> new Tree(initCoords);
-            case "Rock" -> new Rock(initCoords);
-            default -> throw new IllegalArgumentException("Unknown entity class");
-        };
-    }
-
-    public void removeEntity(int x, int y, boolean isDead) {
-        if (isDead) {
-            updateNumbersEntity(worldMap.get(new Coords(x, y)).getClass(), CreatureState.REMOVE);
-        }
-        worldMap.remove(new Coords(x, y));
-    }
-
     private void initThresholdEntity() {
         thresholdsEntities.put(Herbivore.class, 15);
         thresholdsEntities.put(Predator.class, 5);
@@ -129,6 +116,19 @@ public class WorldMap {
         entityCounts.put(Grass.class, 0);
         entityCounts.put(Tree.class, 0);
         entityCounts.put(Rock.class, 0);
+    }
+
+    private <T extends Entity> Entity createEntity(Class<T> entityClass) {
+        String className = entityClass.getSimpleName();
+        Coords initCoords = new Coords(0, 0);
+        return switch (className) {
+            case "Herbivore" -> new Herbivore(this, initCoords);
+            case "Predator" -> new Predator(this, initCoords);
+            case "Grass" -> new Grass(initCoords);
+            case "Tree" -> new Tree(initCoords);
+            case "Rock" -> new Rock(initCoords);
+            default -> throw new IllegalArgumentException("Unknown entity class");
+        };
     }
 
     private void updateNumbersEntity(
