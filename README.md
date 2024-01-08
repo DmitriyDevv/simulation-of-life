@@ -3,6 +3,7 @@
 [Описание](#description)  
 [Технологии](#technologies)  
 [Быстрый старт](#quickStart)
+
 ---
 
 ### Описание:
@@ -30,6 +31,7 @@
 [тык](https://zhukovsd.github.io/java-backend-learning-course/Projects/Simulation/)
 
 ---
+
 <a name="technologies"></a>
 
 ### Технологии:
@@ -37,6 +39,7 @@
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Apache Maven](https://img.shields.io/badge/Apache%20Maven-C71A36?style=for-the-badge&logo=Apache%20Maven&logoColor=white)
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+
 ---
 
 <a name="quickStart"></a>
