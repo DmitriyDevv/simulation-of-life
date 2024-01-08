@@ -106,7 +106,7 @@ public class WorldMap {
         thresholdsEntities.put(Herbivore.class, 15);
         thresholdsEntities.put(Predator.class, 5);
         thresholdsEntities.put(Grass.class, 20);
-        thresholdsEntities.put(Tree.class, 10);
+        thresholdsEntities.put(Tree.class, 40);
         thresholdsEntities.put(Rock.class, 10);
     }
 
