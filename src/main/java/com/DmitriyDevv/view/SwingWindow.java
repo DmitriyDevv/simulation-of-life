@@ -1,12 +1,10 @@
 package com.DmitriyDevv.view;
 
 import com.DmitriyDevv.WorldMap;
-import com.DmitriyDevv.view.icons.Icons;
 
 import java.awt.*;
-import java.nio.file.Files;
+import java.net.URL;
 import java.nio.file.NoSuchFileException;
-import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,9 +15,9 @@ public class SwingWindow {
     private final int WIDTH = 600;
     private final String title = "Simulation of Life";
     private final WorldMap worldMap;
-    private final String pathIcons = "src/main/java/com/DmitriyDevv/view/icons/";
+    private final String pathIcons = "com/DmitriyDevv/view/icons/";
+    private final Map<String, ImageIcon> iconsMap = new HashMap<>();
     private JFrame frame;
-    private Map<String, ImageIcon> iconsMap;
 
     public SwingWindow(WorldMap worldMap) {
         this.worldMap = worldMap;
@@ -63,17 +61,11 @@ public class SwingWindow {
     }
 
     private void initIcons() {
-        iconsMap =
-                new HashMap<>() {
-                    {
-                        put("Empty", new ImageIcon(pathIcons + Icons.EMPTY.getIconName()));
-                        put("Grass", new ImageIcon(pathIcons + Icons.GRASS.getIconName()));
-                        put("Herbivore", new ImageIcon(pathIcons + Icons.SHEEP.getIconName()));
-                        put("Tree", new ImageIcon(pathIcons + Icons.TREE.getIconName()));
-                        put("Predator", new ImageIcon(pathIcons + Icons.WOLF.getIconName()));
-                        put("Rock", new ImageIcon(pathIcons + Icons.ROCK.getIconName()));
-                    }
-                };
+        ClassLoader classLoader = getClass().getClassLoader();
+        for (Icons icon : Icons.values()) {
+            URL iconURL = classLoader.getResource(pathIcons + icon.getIconName());
+            iconsMap.put(icon.getEntityClassName(), new ImageIcon(iconURL));
+        }
     }
 
     private void checkResourcesExists() {
@@ -87,14 +79,17 @@ public class SwingWindow {
     }
 
     private void checkDirectoryExists() throws NoSuchFileException {
-        if (!Files.isDirectory(Path.of(pathIcons))) {
+        URL directoryURL = getClass().getClassLoader().getResource(pathIcons);
+        if (directoryURL == null) {
             throw new NoSuchFileException("Directory does not exist: " + pathIcons);
         }
     }
 
     private void checkIconsExists() throws NoSuchFileException {
         for (Icons icon : Icons.values()) {
-            if (!Files.exists(Path.of(pathIcons + "/" + icon.getIconName()))) {
+            String iconPath = pathIcons + icon.getIconName();
+            URL iconURL = getClass().getClassLoader().getResource(iconPath);
+            if (iconURL == null) {
                 throw new NoSuchFileException("Icon does not exist: " + icon.getIconName());
             }
         }
