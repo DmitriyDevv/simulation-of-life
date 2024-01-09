@@ -1,6 +1,7 @@
 package com.DmitriyDevv;
 
 import com.DmitriyDevv.entitys.Entity;
+import com.DmitriyDevv.entitys.movingEntities.CreatureState;
 import com.DmitriyDevv.entitys.movingEntities.Herbivore;
 import com.DmitriyDevv.entitys.movingEntities.Predator;
 import com.DmitriyDevv.entitys.staticEntities.Grass;

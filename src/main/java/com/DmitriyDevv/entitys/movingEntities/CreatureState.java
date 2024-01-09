@@ -1,4 +1,4 @@
-package com.DmitriyDevv;
+package com.DmitriyDevv.entitys.movingEntities;
 
 public enum CreatureState {
     REMOVE,
