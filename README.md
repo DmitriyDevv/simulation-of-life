@@ -18,6 +18,8 @@
 Для отображения используется
 библиотека [Swing](https://docs.oracle.com/javase/8/docs/technotes/guides/swing/index.html).
 
+![view-simulation-window.png|500](gitsrc/view-simulation-window.png)
+
 **Поиск пути**
 
 Используется алгоритм [A*](https://ru.wikipedia.org/wiki/A*). При каждом шаге существо теряет HP; для разных существ
