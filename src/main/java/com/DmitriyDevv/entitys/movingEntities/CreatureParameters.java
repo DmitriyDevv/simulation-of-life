@@ -4,6 +4,7 @@ public class CreatureParameters {
     private final int ATTACK;
     private final int STEP_COST;
     private int HP;
+
     public CreatureParameters(int HP, int ATTACK, int stepCost) {
         this.HP = HP;
         this.ATTACK = ATTACK;

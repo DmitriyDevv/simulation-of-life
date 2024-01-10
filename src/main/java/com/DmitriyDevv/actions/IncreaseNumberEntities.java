@@ -9,7 +9,6 @@ import com.DmitriyDevv.utils.workingWithNumbers.RandomNumberGenerator;
 import java.util.Map;
 
 public class IncreaseNumberEntities extends Action {
-
     @Override
     public void make(WorldMap worldMap) {
         int thresholdEntities = 1;
